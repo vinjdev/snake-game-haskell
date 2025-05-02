@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Renderer
+import UI.Renderer
 
 main :: IO ()
 main = runGame 

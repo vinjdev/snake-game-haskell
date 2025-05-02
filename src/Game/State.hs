@@ -6,20 +6,21 @@ type Position = (Int,Int)
 
 data Snake = Snake
     {
-        body :: [Position]
-        --dir :: Direction
-    } deriving (Show)
+        body :: [Position],
+        dir :: Direction
+    }
 
 data GameState = GameState
     {
-        snake :: Snake
-        --food :: Position,
+        snake :: Snake,
+        food :: Position
         --score :: Int,
         --gameOver :: Bool
-    } deriving (Show)
+    } 
 
 initState :: GameState
 initState = GameState
     {
-        snake = Snake { body = [(10,10),(9,10),(8,10)] }
+        snake = Snake { body = [(10,10),(9,10),(8,10)],dir = R },
+        food = (17,6)
     }
