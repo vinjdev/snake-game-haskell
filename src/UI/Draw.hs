@@ -1,21 +1,29 @@
-module UI.Draw where
+module UI.Draw (
+    drawSnake,
+    drawFood
+) where
 
 import Graphics.Gloss
 import Game.State
+import Game.Consts (cellSize)
 
-cellSize :: Int
-cellSize = 20
 
-drawCell :: Position -> Picture
-drawCell (x,y) = 
-    translate (fromIntegral (x * cellSize - 200)) 
-              (fromIntegral (y * cellSize - 200)) $ 
-    color green $ 
-    rectangleSolid (fromIntegral cellSize) (fromIntegral cellSize)
+-- Render object
+drawCell :: Color -> Position -> Picture
+drawCell c (x,y) = 
+        translate newX newY $
+        color c $
+        rectangleSolid size size
+    where
+        size = fromIntegral cellSize
+        newX = fromIntegral (x*cellSize - width `div` 2 + cellSize `div` 2)
+        newY = fromIntegral (y*cellSize - height `div` 2 + cellSize `div` 2)
 
+
+-- Draw food
 drawFood :: Position -> Picture
-drawFood (x,y) = 
-    translate (fromIntegral (x * cellSize - 200)) 
-              (fromIntegral (y * cellSize - 200)) $ 
-    color red $ 
-    rectangleSolid (fromIntegral cellSize) (fromIntegral cellSize)
+drawFood = drawCell red
+
+-- Draw snake
+drawSnake :: Position -> Picture
+drawSnake = drawCell green

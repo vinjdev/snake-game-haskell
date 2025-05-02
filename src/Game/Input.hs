@@ -5,11 +5,13 @@ module Game.Input (
 import Game.State
 import Graphics.Gloss.Interface.Pure.Game
 
+-- Input events
 handleInput :: Event -> GameState -> GameState
 handleInput (EventKey (SpecialKey key) Down _ _) gs =
     gs { snake = changeDir (snake gs) key }
 handleInput _ gs = gs
 
+-- Rules for changing direction
 changeDir :: Snake -> SpecialKey -> Snake
 changeDir s key = case key of
     KeyUp    -> if dir s /= D then s { dir = U } else s

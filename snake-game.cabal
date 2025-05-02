@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      Game.Consts
       Game.Input
       Game.Logic
       Game.State
