@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      Game.State
       Renderer
   other-modules:
       Paths_snake_game
