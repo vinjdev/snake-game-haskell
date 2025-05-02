@@ -1,8 +1,7 @@
-module Main where
+module Main (main) where
 
-import UI.Renderer
+import Renderer
 
 main :: IO ()
-main = runWindow
-
+main = runGame 
 

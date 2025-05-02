@@ -25,7 +25,7 @@ source-repository head
 
 library
   exposed-modules:
-      UI.Renderer
+      Renderer
   other-modules:
       Paths_snake_game
   autogen-modules:
