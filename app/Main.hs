@@ -1,6 +1,8 @@
-module Main (main) where
+module Main where
 
-import Lib
+import UI.Renderer
 
 main :: IO ()
-main = someFunc
+main = runWindow
+
+
