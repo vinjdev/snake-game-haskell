@@ -24,5 +24,6 @@ drawGame gs =
 runGame :: IO ()
 runGame = do
     gs <- initState
+    putStrLn "Initilzing snake game"
     playIO window bg fps gs drawGame handleInput updateGame
 

@@ -29,7 +29,7 @@ data GameState = GameState
     {
         snake :: Snake,
         food :: Position,
-        --score :: Int,
+        score :: Int,
         gameOver :: Bool
     } 
 
@@ -46,5 +46,6 @@ initState = do
         {
             snake = Snake { body = [(10,10),(9,10),(8,10)], dir = R },
             food = randFood,
+            score = 0,
             gameOver = False
         }
