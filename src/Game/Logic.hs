@@ -3,18 +3,21 @@ module Game.Logic (
 ) where
 
 import Game.State
+import Utils.RandomPos
 
-updateGame :: Float -> GameState -> GameState
+updateGame :: Float -> GameState -> IO (GameState)
 updateGame _ gs
-    | gameOver gs = gs
+    | gameOver gs = pure gs
     | otherwise =
         let oldSnake = snake gs
             newHead = nextHeadPos (dir oldSnake) (head $ body oldSnake)
         in if collisionWithWall newHead || collisionWithSelf newHead (body oldSnake)
-            then gs { gameOver = True }
+            then pure gs { gameOver = True }
             else if newHead == food gs
-                 then gs { snake = growSnake oldSnake, food = (3,3) }
-                 else gs { snake = move oldSnake }
+                 then do
+                    randFood <- randomIntTuple
+                    pure gs { snake = growSnake oldSnake, food = randFood }
+                 else pure gs { snake = move oldSnake }
 
 move :: Snake -> Snake
 move s = s { body = newHead : init (body s) }
@@ -30,8 +33,6 @@ nextHeadPos d (x,y) = case d of
     D -> (x,y-1)
     L -> (x-1,y)
     R -> (x+1,y)
-
-
 
 collisionWithWall :: Position -> Bool
 collisionWithWall (x,y) = x < 0 || y < 0 || x >= 20 || y >= 20 

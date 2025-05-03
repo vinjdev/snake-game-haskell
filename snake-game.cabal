@@ -31,6 +31,7 @@ library
       Game.State
       UI.Draw
       UI.Renderer
+      Utils.RandomPos
   other-modules:
       Paths_snake_game
   autogen-modules:
@@ -41,6 +42,7 @@ library
   build-depends:
       base >=4.7 && <5
     , gloss
+    , random
   default-language: Haskell2010
 
 executable snake-game-exe
@@ -55,6 +57,7 @@ executable snake-game-exe
   build-depends:
       base >=4.7 && <5
     , gloss
+    , random
     , snake-game
   default-language: Haskell2010
 
@@ -71,5 +74,6 @@ test-suite snake-game-test
   build-depends:
       base >=4.7 && <5
     , gloss
+    , random
     , snake-game
   default-language: Haskell2010

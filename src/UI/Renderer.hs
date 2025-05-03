@@ -2,33 +2,27 @@ module UI.Renderer (
     runGame 
 ) where
 
-import Graphics.Gloss
+import Graphics.Gloss.Interface.IO.Game
 import UI.Draw
 import Game.State
 import Game.Input
 import Game.Logic
 import Game.Consts
 
-
 -- initilize window
 window :: Display
-window = InWindow "test" (width,height) (offset,offset)
-
--- Background color
-bg :: Color
-bg = black
-
--- Frames per second
-fps :: Int
-fps = 10
+window = InWindow "test" (width,height) (offset+800,offset)
 
 -- Draw all game objects
-drawGame :: GameState -> Picture
+drawGame :: GameState -> IO (Picture)
 drawGame gs = 
+    pure $ 
     pictures $
         drawFood (food gs) : map drawSnake (body $ snake gs)
 
 -- Game loop
 runGame :: IO ()
-runGame = play window bg fps initState drawGame handleInput updateGame
+runGame = do
+    gs <- initState
+    playIO window bg fps gs drawGame handleInput updateGame
 

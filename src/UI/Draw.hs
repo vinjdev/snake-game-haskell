@@ -5,7 +5,7 @@ module UI.Draw (
 
 import Graphics.Gloss
 import Game.State
-import Game.Consts (cellSize)
+import Game.Consts (cellSize,width,height)
 
 
 -- Render object

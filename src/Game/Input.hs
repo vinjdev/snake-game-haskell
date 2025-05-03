@@ -6,10 +6,11 @@ import Game.State
 import Graphics.Gloss.Interface.Pure.Game
 
 -- Input events
-handleInput :: Event -> GameState -> GameState
+handleInput :: Event -> GameState -> IO (GameState)
 handleInput (EventKey (SpecialKey key) Down _ _) gs =
+    pure $ 
     gs { snake = changeDir (snake gs) key }
-handleInput _ gs = gs
+handleInput _ gs = pure gs
 
 -- Rules for changing direction
 changeDir :: Snake -> SpecialKey -> Snake

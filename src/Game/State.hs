@@ -7,6 +7,8 @@ module Game.State (
     initState
 ) where
 
+import Utils.RandomPos
+
 -- Direction the snake can have
 -- Up, down, left and right
 data Direction = U | D | L | R deriving (Eq)
@@ -37,10 +39,12 @@ data GameError
     deriving (Eq)
 
 -- Starting values for game state
-initState :: GameState
-initState = GameState
-    {
-        snake = Snake { body = [(10,10),(9,10),(8,10)], dir = R },
-        food = (17,6),
-        gameOver = False
-    }
+initState :: IO (GameState)
+initState = do
+    randFood <- randomIntTuple
+    pure GameState
+        {
+            snake = Snake { body = [(10,10),(9,10),(8,10)], dir = R },
+            food = randFood,
+            gameOver = False
+        }
