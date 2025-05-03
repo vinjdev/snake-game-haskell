@@ -13,17 +13,12 @@ import Game.Consts
 window :: Display
 window = InWindow "test" (width,height) (offset+800,offset)
 
--- Draw all game objects
-drawGame :: GameState -> IO (Picture)
-drawGame gs = 
-    pure $ 
-    pictures $
-        drawFood (food gs) : map drawSnake (body $ snake gs)
+
 
 -- Game loop
 runGame :: IO ()
 runGame = do
-    gs <- initState
-    putStrLn "Initilzing snake game"
-    playIO window bg fps gs drawGame handleInput updateGame
+    putStrLn "Launching Snake Game"
+    let initWorld = World Menu 
+    playIO window bg fps initWorld drawWorld handleInputWorld updateWorld
 

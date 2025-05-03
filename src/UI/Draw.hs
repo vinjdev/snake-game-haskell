@@ -1,4 +1,5 @@
 module UI.Draw (
+    drawWorld,
     drawSnake,
     drawFood
 ) where
@@ -7,6 +8,21 @@ import Graphics.Gloss
 import Game.State
 import Game.Consts (cellSize,width,height)
 
+drawWorld :: World -> IO (Picture)
+drawWorld (World Menu) = pure $
+    pictures
+        [ translate (-160) 100  $ scale 0.3 0.3 $ color white $ text "🐍 Snake Game"
+        , translate (-120) 20   $ scale 0.2 0.2 $ color green $ text "Press 1: Single Player"
+        , translate (-120) (-20)$ scale 0.2 0.2 $ color blue  $ text "Press 2: Two Player"
+        ]
+
+drawWorld (World (SinglePlayer gs)) = pure $
+    pictures $
+        drawFood (food gs) : map drawSnake (body $ snake gs)
+
+drawWorld (World (MultiPlayer gs)) = pure $
+    pictures $
+        drawFood (food gs) : map drawSnake (body $ snake gs)
 
 -- Render object
 drawCell :: Color -> Position -> Picture

@@ -1,9 +1,21 @@
 module Game.Logic (
-    updateGame
+    updateWorld
 ) where
 
 import Game.State
 import Utils.RandomPos
+
+updateWorld :: Float -> World -> IO (World)
+updateWorld _ (World Menu) = pure $ World Menu
+
+
+updateWorld dt (World (SinglePlayer gs)) = do
+    updated <- updateGame dt gs
+    pure $ World (SinglePlayer updated)
+
+updateWorld dt (World (MultiPlayer gs)) = do
+    updated <- updateGame dt gs
+    pure $ World (SinglePlayer updated)
 
 updateGame :: Float -> GameState -> IO (GameState)
 updateGame _ gs

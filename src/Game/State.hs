@@ -3,7 +3,8 @@ module Game.State (
     Position,
     Snake(..),
     GameState(..),
-    GameError(..),
+    GameMode(..),
+    World(..),
     initState
 ) where
 
@@ -33,10 +34,12 @@ data GameState = GameState
         gameOver :: Bool
     } 
 
-data GameError 
-    = CollisionWall
-    | CollisionSelf
-    deriving (Eq)
+data GameMode 
+    = Menu
+    | SinglePlayer GameState 
+    | MultiPlayer GameState
+
+data World = World { mode :: GameMode }
 
 -- Starting values for game state
 initState :: IO (GameState)
