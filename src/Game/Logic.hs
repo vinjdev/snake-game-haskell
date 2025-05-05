@@ -11,7 +11,9 @@ updateWorld _ (World Menu) = pure $ World Menu
 
 updateWorld dt (World (SinglePlayer gs)) = do
     updated <- updateGame dt gs
-    pure $ World (SinglePlayer updated)
+    if gameOver updated
+        then pure $ World Menu
+        else pure $ World (SinglePlayer updated)
 
 updateWorld dt (World (MultiPlayer gs)) = do
     updated <- updateGame dt gs
