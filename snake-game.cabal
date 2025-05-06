@@ -27,11 +27,14 @@ library
   exposed-modules:
       Game.Consts
       Game.Input
-      Game.Logic
+      Game.Logic.Logic
+      Game.Logic.LogicMultiplayer
+      Game.Logic.LogicSinglePlayer
+      Game.Logic.LogicUtils
       Game.State
       UI.Draw
       UI.Renderer
-      Utils.RandomPos
+      Utils.Utils
   other-modules:
       Paths_snake_game
   autogen-modules:

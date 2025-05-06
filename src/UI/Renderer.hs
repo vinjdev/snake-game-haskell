@@ -6,14 +6,12 @@ import Graphics.Gloss.Interface.IO.Game
 import UI.Draw
 import Game.State
 import Game.Input
-import Game.Logic
+import Game.Logic.Logic
 import Game.Consts
 
 -- initilize window
 window :: Display
 window = InWindow "test" (width,height) (offset+800,offset)
-
-
 
 -- Game loop
 runGame :: IO ()
