@@ -26,8 +26,8 @@ drawWorld (World (SinglePlayer gs)) = pure $
 drawWorld (World (MultiPlayer gs)) = pure $
     pictures $
         [drawFood (foodMulti gs)] ++ 
-        map drawSnake (body $ snake1 gs) ++
-        map drawSnake (body $ snake2 gs)
+        map drawSnake1 (body $ snake1 gs) ++
+        map drawSnake2 (body $ snake2 gs)
 
 drawScore :: Float -> Float -> Int -> Picture
 drawScore x y s = 
@@ -55,3 +55,11 @@ drawFood = drawCell red
 -- Draw snake
 drawSnake :: Position -> Picture
 drawSnake = drawCell green
+
+-- Draw snake 1
+drawSnake1 :: Position -> Picture
+drawSnake1 = drawCell green
+
+-- Draw snake 2
+drawSnake2 :: Position -> Picture
+drawSnake2 = drawCell blue 
