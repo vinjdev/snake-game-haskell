@@ -20,18 +20,19 @@ drawWorld (World (SinglePlayer gs)) = pure $
     pictures $
         [ drawFood (food gs) ] ++ 
         map drawSnake (body $ snake gs) ++ 
-        [ drawScore 200 200 (score gs) ]
+        [ drawScore 250 230 (score gs) ]
 
 
 drawWorld (World (MultiPlayer gs)) = pure $
     pictures $
         [drawFood (foodMulti gs)] ++ 
         map drawSnake1 (body $ snake1 gs) ++
-        map drawSnake2 (body $ snake2 gs)
+        map drawSnake2 (body $ snake2 gs) ++
+        [ drawScore 250 230 (score1 gs), drawScore (-250) 230 (score2 gs)]
 
 drawScore :: Float -> Float -> Int -> Picture
 drawScore x y s = 
-    translate (x-100) (y-40) $
+    translate x y $
     scale 0.3 0.3 $ color white $ 
     text $ 
     show (s)

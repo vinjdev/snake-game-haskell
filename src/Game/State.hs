@@ -68,10 +68,12 @@ initState = do
 initMultiplayer :: IO (GameStateMulti)
 initMultiplayer = do
     randFood <- randomIntTuple
+    putStrLn "Player 1: Arrows"
+    putStrLn "Player 2: WASD"
     pure GameStateMulti 
         {
-            snake1 = Snake { body = [(10,7),(9,7),(8,7)], dir = R },
-            snake2 = Snake { body = [(8,13),(9,13),(10,13)], dir = L },
+            snake1 = Snake { body = [(14,8),(14,7),(14,6)], dir = U },
+            snake2 = Snake { body = [(5,8),(5,7),(5,6)], dir = U },
             foodMulti = randFood,
             score1 = 0,
             score2 = 0,
