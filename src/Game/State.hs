@@ -48,6 +48,7 @@ data GameStateMulti = GameStateMulti
 
 data GameMode 
     = Menu
+    | OverMenu Float
     | SinglePlayer GameState
     | MultiPlayer GameStateMulti
 

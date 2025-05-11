@@ -16,6 +16,16 @@ drawWorld (World Menu) = pure $
         , translate (-120) (-20)$ scale 0.2 0.2 $ color blue  $ text "Press 2: Two Player"
         ]
 
+drawWorld (World (OverMenu _)) = pure $ 
+    pictures
+        [ translate (-200) 0 
+          $ scale 0.6 0.6
+          $ color red 
+          $ text gameOverText 
+        ]
+    where
+        gameOverText = "GAME OVER"
+
 drawWorld (World (SinglePlayer gs)) = pure $
     pictures $
         [ drawFood (food gs) ] ++ 
